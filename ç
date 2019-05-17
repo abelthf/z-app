@@ -1,6 +1,6 @@
 # services/orders/project/__init__.py
 
-import os  # nuevo
+
 from flask import Flask, jsonify
 
 
@@ -8,8 +8,8 @@ from flask import Flask, jsonify
 app = Flask(__name__)
 
 # estableciendo configuración
-app_settings = os.getenv('APP_SETTINGS')  # nuevo
-app.config.from_object(app_settings)      # nuevo
+app_settings = os.
+app.config.from_object('project.config.DevelopmentConfig')  # nuevo
 
 
 @app.route('/orders/ping', methods=['GET'])
