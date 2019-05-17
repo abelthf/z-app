@@ -14,3 +14,5 @@ services:
       - FLASK_APP=project/__init__.py
       - FLASK_ENV=development
       - APP_SETTINGS=project.config.DevelopmentConfig  # nuevo
+      - DATABASE_URL=sqlite:///data.sqlite  # nuevo
+      # - DATABASE_TEST_URL=sqlite:////orders_test.sqlite  # nuevo
