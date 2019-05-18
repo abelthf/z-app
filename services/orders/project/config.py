@@ -1,7 +1,8 @@
 # services/orders/project/config.py
 import os
 
-
+basedir = os.path.abspath(os.path.dirname(__file__))
+db_path = os.path.join(basedir, '../data.sqlite')
 
 class BaseConfig:
     """Configuración báse"""
@@ -14,7 +15,8 @@ class DevelopmentConfig(BaseConfig):
     #SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')  # nuevo
     #SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL' + db_path)  # nuevo
     #SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL' + db_path)  # nuevo
-    pass
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
+            'sqlite:///' + db_path
 
 
 class TestingConfig(BaseConfig):

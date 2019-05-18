@@ -5,26 +5,34 @@ from flask import Flask, jsonify, request  # nuevo
 from flask_sqlalchemy import SQLAlchemy  # nuevo
 
 
-basedir = os.path.abspath(os.path.dirname(__file__))
-db_path = os.path.join(basedir, '../data.sqlite')
-
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_path
+# basedir = os.path.abspath(os.path.dirname(__file__))
+# db_path = os.path.join(basedir, '../data.sqlite')
+#
+#
+# app = Flask(__name__)
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_path
 
 # ----------------
 # instanciando la app
-#app = Flask(__name__)
+app = Flask(__name__)
 
 # estableciendo configuración
 #app_settings = os.getenv('APP_SETTINGS')
 #app.config.from_object(app_settings)
+
+app.config.from_object('project.config.DevelopmentConfig')
 
 # instanciado la db
 db = SQLAlchemy(app)  # nuevo
 
 
 # model
+
+class ValidationError(ValueError):
+    pass
+
+
 class Customer(db.Model):
     __tablename__ = 'customers'
     id = db.Column(db.Integer, primary_key=True)
@@ -79,8 +87,3 @@ def ping_pong():
         'status': 'success',
         'message': 'pong!'
     })
-
-
-if __name__ == '__main__':
-    db.create_all()
-    app.run(debug=True)
