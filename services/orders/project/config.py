@@ -12,11 +12,8 @@ class BaseConfig:
 
 class DevelopmentConfig(BaseConfig):
     """Configuración de desarrollo"""
-    #SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')  # nuevo
-    #SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL' + db_path)  # nuevo
-    #SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL' + db_path)  # nuevo
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-            'sqlite:///' + db_path
+            'sqlite:///' + db_path  # nuevo
 
 
 class TestingConfig(BaseConfig):
